@@ -299,7 +299,8 @@ def grid_plot(grid_x,grid_y,figsize=(12,12)):
 
 
 def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False, 
-					 scatter_alpha=.5,global_hist=False,kind='scatter',dist_kde=True,dist_hist=False,**kwargs):
+					 scatter_alpha=.5,global_hist=False,kind='scatter',dist_kde=True,dist_hist=False,
+					 replacements=None,**kwargs):
 	import seaborn as sns
 
 	def colored_scatter(x, y, c=None):
@@ -363,7 +364,14 @@ def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False,
 			color='grey',
 			vertical=True
 		)
-	#g.fig.get_axes()[0].legend(legends,fontsize=20)
-	#plt.legend(legends,fontsize=20)
+	if replacements is not None:
+		for i in range(4):
+		    for j in range(4):
+		        xlabel = g.axes[i][j].get_xlabel()
+		        ylabel = g.axes[i][j].get_ylabel()
+		        if xlabel in replacements.keys():
+		            g.axes[i][j].set_xlabel(replacements[xlabel])
+		        if ylabel in replacements.keys():
+		            g.axes[i][j].set_ylabel(replacements[ylabel])
 	return(g)
 
