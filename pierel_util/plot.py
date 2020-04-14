@@ -86,59 +86,59 @@ def plot3d(x,y,z,fig=None,x_lab='',y_lab='',fontsize=18,figsize=(12,12),line_dic
 		fig=go.FigureWidget(go.Scatter3d(x=x, y=y, z=z,
 			hoverinfo='text',hovertext=hovertext,**kwargs))
 		layout = dict(
-	    width=800,
-	    height=800,
-	    autosize=False,
-	    title=fig_title,
-	    scene=dict(
-		        xaxis=dict(
-		            gridcolor='rgb(255, 255, 255)',
-		            zerolinecolor='rgb(255, 255, 255)',
-		            showbackground=True,
-		            backgroundcolor='rgb(230, 230, 230)',
-		            title=x_name,
-		            autorange='reversed',
-		            zerolinewidth=5,
-		            tick0=0
+		width=800,
+		height=800,
+		autosize=False,
+		title=fig_title,
+		scene=dict(
+				xaxis=dict(
+					gridcolor='rgb(255, 255, 255)',
+					zerolinecolor='rgb(255, 255, 255)',
+					showbackground=True,
+					backgroundcolor='rgb(230, 230, 230)',
+					title=x_name,
+					autorange='reversed',
+					zerolinewidth=5,
+					tick0=0
 
-		            #titlefont=dict(size=18,color='rgb(255,255,255)'),
-		        ),
-		        yaxis=dict(
-		            gridcolor='rgb(255, 255, 255)',
-		            zerolinecolor='rgb(255, 255, 255)',
-		            showbackground=True,
-		            backgroundcolor='rgb(230, 230, 230)',
-		            title=y_name,
-		            autorange='reversed'
-		            #titlefont=dict(size=18,color='rgb(255,255,255)'),
+					#titlefont=dict(size=18,color='rgb(255,255,255)'),
+				),
+				yaxis=dict(
+					gridcolor='rgb(255, 255, 255)',
+					zerolinecolor='rgb(255, 255, 255)',
+					showbackground=True,
+					backgroundcolor='rgb(230, 230, 230)',
+					title=y_name,
+					autorange='reversed'
+					#titlefont=dict(size=18,color='rgb(255,255,255)'),
 
-		        ),
-		        zaxis=dict(
-		            gridcolor='rgb(255, 255, 255)',
-		            zerolinecolor='rgb(255, 255, 255)',
-		            showbackground=True,
-		            backgroundcolor='rgb(230, 230, 230)',
-		            title=z_name,
-		            #titlefont=dict(size=18,color='rgb(255,255,255)'),
+				),
+				zaxis=dict(
+					gridcolor='rgb(255, 255, 255)',
+					zerolinecolor='rgb(255, 255, 255)',
+					showbackground=True,
+					backgroundcolor='rgb(230, 230, 230)',
+					title=z_name,
+					#titlefont=dict(size=18,color='rgb(255,255,255)'),
 
-		        ),
-		        camera=dict(
-		            up=dict(
-		                x=0,
-		                y=0,
-		                z=1
-		            ),
-		            eye=dict(
-		               x=-2.5,#-1.7428,
-		               y=0,#1.0707,
-		               z=0#0.7100,
-		            ),
-		            center=dict(x=0,y=0,z=0),
-		            projection=dict(type='orthographic')
-		        ),
-		        #aspectratio = dict( x=1, y=1, z=1 ),
-		        #aspectmode = 'manual'
-		    ),
+				),
+				camera=dict(
+					up=dict(
+						x=0,
+						y=0,
+						z=1
+					),
+					eye=dict(
+					   x=-2.5,#-1.7428,
+					   y=0,#1.0707,
+					   z=0#0.7100,
+					),
+					center=dict(x=0,y=0,z=0),
+					projection=dict(type='orthographic')
+				),
+				#aspectratio = dict( x=1, y=1, z=1 ),
+				#aspectmode = 'manual'
+			),
 		)
 
 		fig['layout']=layout
@@ -161,31 +161,31 @@ def plot3d_Volume():
 	values/=np.max(values)
 	
 	fig = go.Figure(data=go.Isosurface(
-	    x=X.flatten(),
-	    y=Y.flatten(),
-	    z=Z.flatten(),
-	    value=values.flatten(),
-	    isomin=.05,
-	    showscale=False,
-	    colorscale='blues',
-	    isomax=.2,
-	    surface_count=1,
-	    caps=dict(x_show=False, y_show=False)
-	    ))
+		x=X.flatten(),
+		y=Y.flatten(),
+		z=Z.flatten(),
+		value=values.flatten(),
+		isomin=.05,
+		showscale=False,
+		colorscale='blues',
+		isomax=.2,
+		surface_count=1,
+		caps=dict(x_show=False, y_show=False)
+		))
 	X2, Y2, Z2 = np.mgrid[-5:5:40j, -5:5:40j, -5:5:40j]
 	values2 = X2 * X2 * 0.75 + Y2 * Y2 + Z2 * Z2 * 3
 	values2/=np.max(values2)
 	
 	fig.add_trace(go.Isosurface(x=X2.flatten()-3,
-	    y=Y2.flatten()-9,
-	    z=Z2.flatten(),
-	    value=values2.flatten(),
-	    isomin=.05,
-	    colorscale='reds',
-	    showscale=False,
-	    isomax=.15,
-	    surface_count=1,
-	    caps=dict(x_show=False, y_show=False)))
+		y=Y2.flatten()-9,
+		z=Z2.flatten(),
+		value=values2.flatten(),
+		isomin=.05,
+		colorscale='reds',
+		showscale=False,
+		isomax=.15,
+		surface_count=1,
+		caps=dict(x_show=False, y_show=False)))
 
 	fig.add_trace(go.Scatter3d(x=[0],y=[20],z=[0],mode='markers'))
 	x=np.linspace(-2,10,100)
@@ -203,57 +203,57 @@ def plot3d_Volume():
 	fig.add_trace(go.Scatter3d(x=x,y=y,z=z,mode='lines',line=dict(color='white')))
 
 	layout = dict(
-	    width=800,
-	    height=700,
-	    autosize=False,
-	    title='SN Requiem',
-	    #plot_bgcolor='#000000',
-	    scene=dict(
-	        xaxis=dict(
-	            gridcolor='rgb(255, 255, 255)',
-	            zerolinecolor='rgb(255, 255, 255)',
-	            showbackground=True,
-	            backgroundcolor='rgb(0, 0, 0)',
-	            #title='Age (Observer Days)',
-	            #titlefont=dict(size=18,color='rgb(255,255,255)'),
-	            #autorange='reversed'
-	        ),
-	        yaxis=dict(
-	            gridcolor='rgb(255, 255, 255)',
-	            zerolinecolor='rgb(255, 255, 255)',
-	            showbackground=True,
-	            backgroundcolor='rgb(0, 0, 0)',
+		width=800,
+		height=700,
+		autosize=False,
+		title='SN Requiem',
+		#plot_bgcolor='#000000',
+		scene=dict(
+			xaxis=dict(
+				gridcolor='rgb(255, 255, 255)',
+				zerolinecolor='rgb(255, 255, 255)',
+				showbackground=True,
+				backgroundcolor='rgb(0, 0, 0)',
+				#title='Age (Observer Days)',
+				#titlefont=dict(size=18,color='rgb(255,255,255)'),
+				#autorange='reversed'
+			),
+			yaxis=dict(
+				gridcolor='rgb(255, 255, 255)',
+				zerolinecolor='rgb(255, 255, 255)',
+				showbackground=True,
+				backgroundcolor='rgb(0, 0, 0)',
 
-	            #title='F105W-F160W Color',
-	            #titlefont=dict(size=18,color='rgb(255,255,255)'),
-	            autorange='reversed'
+				#title='F105W-F160W Color',
+				#titlefont=dict(size=18,color='rgb(255,255,255)'),
+				autorange='reversed'
 
-	        ),
-	        zaxis=dict(
-	            gridcolor='rgb(255, 255, 255)',
-	            zerolinecolor='rgb(255, 255, 255)',
-	            showbackground=True,
-	            backgroundcolor='rgb(0, 0, 0)',
-	            #title='F160W AB Magnitude',
-	            #titlefont=dict(size=18,color='rgb(255,255,255)'),
-	            autorange='reversed'
+			),
+			zaxis=dict(
+				gridcolor='rgb(255, 255, 255)',
+				zerolinecolor='rgb(255, 255, 255)',
+				showbackground=True,
+				backgroundcolor='rgb(0, 0, 0)',
+				#title='F160W AB Magnitude',
+				#titlefont=dict(size=18,color='rgb(255,255,255)'),
+				autorange='reversed'
 
-	        ),
-	        camera=dict(
-	            up=dict(
-	                x=0,
-	                y=0,
-	                z=1
-	            ),
-	            #eye=dict(
-	            #    x=-1.7428,
-	            #    y=1.0707,
-	            #    z=0.7100,
-	            #)
-	        ),
-	        aspectratio = dict( x=1, y=1, z=0.7 ),
-	        aspectmode = 'manual'
-	    	),
+			),
+			camera=dict(
+				up=dict(
+					x=0,
+					y=0,
+					z=1
+				),
+				#eye=dict(
+				#    x=-1.7428,
+				#    y=1.0707,
+				#    z=0.7100,
+				#)
+			),
+			aspectratio = dict( x=1, y=1, z=0.7 ),
+			aspectmode = 'manual'
+			),
 		)
 
 	fig['layout']=layout
@@ -365,13 +365,12 @@ def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False,
 			vertical=True
 		)
 	if replacements is not None:
-		for i in range(4):
-		    for j in range(4):
-		        xlabel = g.axes[i][j].get_xlabel()
-		        ylabel = g.axes[i][j].get_ylabel()
-		        if xlabel in replacements.keys():
-		            g.axes[i][j].set_xlabel(replacements[xlabel])
-		        if ylabel in replacements.keys():
-		            g.axes[i][j].set_ylabel(replacements[ylabel])
+		xlabel = g.ax_joint.get_xlabel()
+		ylabel = g.ax_joint.get_ylabel()
+		if xlabel in replacements.keys():
+			g.ax_joint.set_xlabel(replacements[xlabel])
+		if ylabel in replacements.keys():
+			g.ax_joint.set_ylabel(replacements[ylabel])
+		g.ax_joint.legend([x for x in legends if x not in replacements.keys() else replacements[x]])
 	return(g)
 
