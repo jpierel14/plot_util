@@ -301,7 +301,7 @@ def grid_plot(grid_x,grid_y,figsize=(12,12)):
 
 def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False, 
 					 scatter_alpha=.5,global_hist=False,kind='scatter',dist_kde=True,dist_hist=False,
-					 replacements=None,**kwargs):
+					 replacements=None,xlim=None,ylim=None,**kwargs):
 	import seaborn as sns
 
 	def colored_scatter(x, y, c=None):
@@ -317,7 +317,9 @@ def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False,
 	g = sns.JointGrid(
 		x=col_x,
 		y=col_y,
-		data=df
+		data=df,
+		xlim=xlim,
+		ylim=ylim
 	)
 
 	color = None
