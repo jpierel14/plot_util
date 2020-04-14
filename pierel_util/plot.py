@@ -315,7 +315,7 @@ def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False,
 	g = sns.JointGrid(
 		x=col_x,
 		y=col_y,
-		data=df
+		data=df,legend=True
 	)
 
 	color = None
@@ -361,6 +361,6 @@ def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False,
 			color='grey',
 			vertical=True
 		)
-	g.add_legend()
+	#g.add_legend()
 	return(g)
 
