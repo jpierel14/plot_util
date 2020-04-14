@@ -299,7 +299,7 @@ def grid_plot(grid_x,grid_y,figsize=(12,12)):
 
 
 def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False, 
-					 scatter_alpha=.5,global_hist=False,kind='scatter',dist_kde=True,dist_hist=False):
+					 scatter_alpha=.5,global_hist=False,kind='scatter',dist_kde=True,dist_hist=False,**kwargs):
 	import seaborn as sns
 
 	def colored_scatter(x, y, c=None):
@@ -330,8 +330,7 @@ def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False,
 				colored_scatter(df_group[col_x],df_group[col_y],c=color),
 			)
 		elif kind=='kde':
-			print(name,len(df_group))
-			g.plot_joint(sns.kdeplot)
+			g.plot_joint(sns.kdeplot,**kwargs)
 		sns.distplot(
 			df_group[col_x].values,
 			ax=g.ax_marg_x,
