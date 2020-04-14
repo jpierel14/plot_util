@@ -361,7 +361,7 @@ def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False,
 			color='grey',
 			vertical=True
 		)
-	g.fig.get_axes()[0].legend(fontsize=20)
+	g.fig.get_axes()[0].legend(legends,fontsize=20)
 	#plt.legend(legends,fontsize=20)
 	return(g)
 
