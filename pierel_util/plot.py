@@ -330,7 +330,7 @@ def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False,
 				colored_scatter(df_group[col_x],df_group[col_y],c=color),
 			)
 		elif kind=='kde':
-			g.plot_joint(sns.kdeplot,x=df_group[col_x],y=df_group[col_y])
+			g.plot_joint(sns.kdeplot)
 		sns.distplot(
 			df_group[col_x].values,
 			ax=g.ax_marg_x,
