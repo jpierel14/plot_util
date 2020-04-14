@@ -3,13 +3,9 @@ from mpl_toolkits.axes_grid1.axes_divider import make_axes_locatable
 from mpl_toolkits import mplot3d
 import numpy as np
 import pickle
-import chart_studio.plotly as py
-import plotly.graph_objects as go
-import plotly.tools as tls
+
 from astropy.table import Table
-import plotly.express as px
 import matplotlib.gridspec as gridspec
-import seaborn as sns
 
 def weighted_quantile(values, quantiles, sample_weight=None, 
 					  values_sorted=False, old_style=False):
@@ -79,6 +75,11 @@ def plot(plot_type,x,y=None,yerr=None,xerr=None,ax=None,x_lab='',y_lab='',fontsi
 
 def plot3d(x,y,z,fig=None,x_lab='',y_lab='',fontsize=18,figsize=(12,12),line_dict=dict(color='black',width=8),
 		 x_name='x',y_name='y',z_name='z',label_name='z',fig_title='My Figure',hovertext=None,**kwargs):
+	import chart_studio.plotly as py
+	import plotly.graph_objects as go
+	import plotly.tools as tls
+	import plotly.express as px
+
 	if hovertext is None:
 		hovertext=['%s: %.2f<br>%s: %.2f<br>%s: %.2f'%(x_name,x[j],y_name,y[j],z_name,z[j]) for j in range(len(x))]
 	if fig is None:
@@ -148,6 +149,10 @@ def plot3d(x,y,z,fig=None,x_lab='',y_lab='',fontsize=18,figsize=(12,12),line_dic
 
 
 def plot3d_Volume():
+	import chart_studio.plotly as py
+	import plotly.graph_objects as go
+	import plotly.tools as tls
+	import plotly.express as px
 
 	X, Y, Z = np.mgrid[-5:5:40j, -5:5:40j, -5:5:40j]
 
@@ -295,6 +300,8 @@ def grid_plot(grid_x,grid_y,figsize=(12,12)):
 
 def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False, 
 					 scatter_alpha=.5,global_hist=False,kind='scatter',dist_kde=True,dist_hist=False):
+	import seaborn as sns
+
 	def colored_scatter(x, y, c=None):
 		def scatter(*args, **kwargs):
 			args = (x, y)
