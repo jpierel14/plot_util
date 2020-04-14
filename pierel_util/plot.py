@@ -3,6 +3,7 @@ from mpl_toolkits.axes_grid1.axes_divider import make_axes_locatable
 from mpl_toolkits import mplot3d
 import numpy as np
 import pickle
+import matplotlib.lines as mlines
 
 from astropy.table import Table
 import matplotlib.gridspec as gridspec
@@ -333,7 +334,7 @@ def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False,
 		elif kind=='kde':
 			g.x=df_group[col_x]
 			g.y=df_group[col_y]
-			handles.append(g.plot_joint(sns.kdeplot,**kwargs))
+			handles.append(g.plot_joint(sns.kdeplot,label=str(name),**kwargs))
 	
 	for name, df_group in df.groupby(col_k):
 		sns.distplot(
@@ -371,6 +372,6 @@ def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False,
 			g.ax_joint.set_xlabel(replacements[xlabel],fontsize=16)
 		if ylabel in replacements.keys():
 			g.ax_joint.set_ylabel(replacements[ylabel],fontsize=16)
-		g.ax_joint.legend(handles,[x if x not in replacements.keys() else replacements[x] for x in legends])
+		g.ax_joint.legend([x if x not in replacements.keys() else replacements[x] for x in legends])
 	return(g)
 
