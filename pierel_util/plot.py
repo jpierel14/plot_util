@@ -371,6 +371,6 @@ def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False,
 			g.ax_joint.set_xlabel(replacements[xlabel])
 		if ylabel in replacements.keys():
 			g.ax_joint.set_ylabel(replacements[ylabel])
-		g.ax_joint.legend([x for x in legends if x not in replacements.keys() else replacements[x]])
+		g.ax_joint.legend([x if x not in replacements.keys() else replacements[x] for x in legends])
 	return(g)
 
