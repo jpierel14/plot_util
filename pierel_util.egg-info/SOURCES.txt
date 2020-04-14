@@ -1,4 +1,8 @@
 setup.py
+pierel_util/Library_DatasetGetMaximumDatapoint.py
+pierel_util/Library_DatasetGetMinimumDatapoint.py
+pierel_util/Library_GraphTwoDimensionDensityColorMap.py
+pierel_util/Type_NumpyTwoDimensionalDataset.py
 pierel_util/__init__.py
 pierel_util/plot.py
 pierel_util/test.py
