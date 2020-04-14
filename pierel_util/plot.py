@@ -327,7 +327,7 @@ def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False,
 			color=name
 
 		g.plot_joint(
-			plot_funcs[kind](x=df_group[col_x],y=df_group[col_y],c=color),
+			plot_funcs[kind](df_group[col_x],df_group[col_y],c=color),
 		)
 		sns.distplot(
 			df_group[col_x].values,
