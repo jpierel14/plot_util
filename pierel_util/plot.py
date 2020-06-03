@@ -44,7 +44,7 @@ def weighted_quantile(values, quantiles, sample_weight=None,
 	return np.interp(quantiles, weighted_quantiles, values)
 
 def plot(plot_type,x,y=None,yerr=None,xerr=None,ax=None,x_lab='',y_lab='',fontsize=18,figsize=(12,12),
-		 x_name=None,y_name=None,label_name=None,**kwargs):
+		 x_name=None,y_name=None,label_name=None,ticklabelsize=16,**kwargs):
 	if ax is None and plot_type != 'joint':
 		fig=plt.figure(figsize=figsize)
 		ax=fig.gca()
@@ -65,9 +65,9 @@ def plot(plot_type,x,y=None,yerr=None,xerr=None,ax=None,x_lab='',y_lab='',fontsi
 	else:
 		raise RuntimeError('What plot are you trying to do.')
 	for tick in ax.xaxis.get_major_ticks():
-		tick.label.set_fontsize(16)
+		tick.label.set_fontsize(ticklabelsize)
 	for tick in ax.yaxis.get_major_ticks():
-		tick.label.set_fontsize(16)
+		tick.label.set_fontsize(ticklabelsize)
 	ax.set_xlabel(x_lab,fontsize=fontsize)
 	ax.set_ylabel(y_lab,fontsize=fontsize)
 	return(ax)
