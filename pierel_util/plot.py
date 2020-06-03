@@ -293,10 +293,40 @@ def split_plot(ax,plot_type,x,y=None,yerr=None,xerr=None,x_lab='',y_lab='',xtick
 
 
 
-def grid_plot(grid_x,grid_y,figsize=(12,12)):
+def grid_plot(grid_x,grid_y,figsize=(12,12),sharex=False,sharey=False):
 	fig=plt.figure(figsize=figsize)
 	gs = gridspec.GridSpec(grid_x, grid_y)
-	return(fig,gs)
+	
+	axes=[]
+	if grid_x==1:
+		for j in range(grid_y):
+			axes.append(fig.add_subplot(gs[0,j]))
+			if sharex and j>0:
+				axes[-1].get_shared_x_axes().join(axes[0], axes[-1])
+			if sharey and j>0:
+				axes[-1].get_shared_y_axes().join(axes[0], axes[-1])
+	elif grid_y==1:
+		for i in range(grid_x):
+			axes.append(fig.add_subplot(gs[i,0]))
+			if sharex and j>0:
+				axes[-1].get_shared_x_axes().join(axes[0], axes[-1])
+			if sharey and j>0:
+				axes[-1].get_shared_y_axes().join(axes[0], axes[-1])
+	else:
+		for i in range(grid_x):
+			tempax=[]
+			for j in range(grid_y):
+				tempax.append(fig.add_subplot(gs[i,j]))
+				if sharex and (j>0 or i>0):
+					tempax[-1].get_shared_x_axes().join(axes[0][0], tempax[-1])
+				if sharey and (j>0 or i>0):
+					axes[-1].get_shared_y_axes().join(axes[0], tempax[-1])
+			axes.append(tempax)
+	
+	
+	fig.add_subplot(111, frameon=False)
+	plt.tick_params(labelcolor='none', top=False, bottom=False, left=False, right=False)
+	return(fig,axes)
 
 
 def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False, 
