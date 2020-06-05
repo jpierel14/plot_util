@@ -262,17 +262,18 @@ def plot3d_Volume():
 	return(fig)
 
 
-def split_plot(ax,plot_type,x,y=None,yerr=None,xerr=None,x_lab='',y_lab='',xticks=False,fontsize=18,split_size='50%',**kwargs):
+def split_plot(ax,plot_type,x,y=None,yerr=None,xerr=None,x_lab='',y_lab='',xticks=False,fontsize=18,
+					split_size='50%',ticklabelsize=16,**kwargs):
 	ax_divider = make_axes_locatable(ax)
 	ax_ml = ax_divider.append_axes("bottom", size=split_size, pad=.2)
 	ticks=[]
 	for tick in ax_ml.xaxis.get_major_ticks():
 		ticks.append('')
-		tick.label.set_fontsize(16)
+		tick.label.set_fontsize(ticklabelsize)
 	if not xticks:
 		ax.set_xticklabels(ticks)
 	for tick in ax_ml.yaxis.get_major_ticks():
-		tick.label.set_fontsize(16)
+		tick.label.set_fontsize(ticklabelsize)
 	if plot_type=='scatter':
 		ax_ml.scatter(x,y,**kwargs)
 	elif plot_type=='plot':
@@ -284,9 +285,9 @@ def split_plot(ax,plot_type,x,y=None,yerr=None,xerr=None,x_lab='',y_lab='',xtick
 	else:
 		raise RuntimeError('What plot are you trying to do.')
 	for tick in ax_ml.xaxis.get_major_ticks():
-		tick.label.set_fontsize(16)
+		tick.label.set_fontsize(ticklabelsize)
 	for tick in ax_ml.yaxis.get_major_ticks():
-		tick.label.set_fontsize(16)
+		tick.label.set_fontsize(ticklabelsize)
 	ax_ml.set_xlabel(x_lab,fontsize=fontsize)
 	ax_ml.set_ylabel(y_lab,fontsize=fontsize)
 	return(ax,ax_ml)
