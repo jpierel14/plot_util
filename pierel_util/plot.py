@@ -322,9 +322,9 @@ def grid_plot(grid_x,grid_y,figsize=(12,12),sharex=False,sharey=False):
 		for i in range(grid_x):
 			for j in range(grid_y):
 				if sharex and i>0:
-					axes[i][j].get_shared_x_axes().join(axes[0][j], tempax[i][j])
+					axes[i][j].get_shared_x_axes().join(axes[0][j], axes[i][j])
 				if sharey and j>0:
-					axes[i][j].get_shared_y_axes().join(axes[i][0], tempax[-1])
+					axes[i][j].get_shared_y_axes().join(axes[i][0], axes[i][j])
 	
 	
 	fig.add_subplot(111, frameon=False)
