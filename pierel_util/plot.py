@@ -318,11 +318,13 @@ def grid_plot(grid_x,grid_y,figsize=(12,12),sharex=False,sharey=False):
 			tempax=[]
 			for j in range(grid_y):
 				tempax.append(fig.add_subplot(gs[i,j]))
-				if sharex and (j>0 or i>0):
-					tempax[-1].get_shared_x_axes().join(axes[0][0], tempax[-1])
-				if sharey and (j>0 or i>0):
-					axes[-1].get_shared_y_axes().join(axes[0], tempax[-1])
 			axes.append(tempax)
+		for i in range(grid_x):
+			for j in range(grid_y):
+				if sharex and i>0:
+					axes[i][j].get_shared_x_axes().join(axes[0][j], tempax[i][j])
+				if sharey and j>0:
+					axes[i][j].get_shared_y_axes().join(axes[i][0], tempax[-1])
 	
 	
 	fig.add_subplot(111, frameon=False)
@@ -332,7 +334,7 @@ def grid_plot(grid_x,grid_y,figsize=(12,12),sharex=False,sharey=False):
 
 def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False, 
 					 scatter_alpha=.5,global_hist=False,kind='scatter',dist_kde=True,dist_hist=False,
-					 replacements=None,xlim=None,ylim=None,bins_x=None,bins_y=None,**kwargs):
+					 replacements=None,xlim=None,ylim=None,bins_x=None,bins_y=None,fontsize=16,**kwargs):
 	import seaborn as sns
 
 	def colored_scatter(x, y, c=None):
@@ -350,7 +352,8 @@ def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False,
 		y=col_y,
 		data=df,
 		xlim=xlim,
-		ylim=ylim
+		ylim=ylim,
+		**kwargs
 	)
 
 	color = None
@@ -404,9 +407,9 @@ def multivariateGrid(col_x, col_y, col_k, df, k_is_color=False,
 		xlabel = g.ax_joint.get_xlabel()
 		ylabel = g.ax_joint.get_ylabel()
 		if xlabel in replacements.keys():
-			g.ax_joint.set_xlabel(replacements[xlabel],fontsize=16)
+			g.ax_joint.set_xlabel(replacements[xlabel],fontsize=fontsize)
 		if ylabel in replacements.keys():
-			g.ax_joint.set_ylabel(replacements[ylabel],fontsize=16)
+			g.ax_joint.set_ylabel(replacements[ylabel],fontsize=fontsize)
 		g.ax_joint.legend([x if x not in replacements.keys() else replacements[x] for x in legends])
 	return(g)
 
