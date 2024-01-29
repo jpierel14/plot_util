@@ -64,12 +64,13 @@ def plot(plot_type,x,y=None,yerr=None,xerr=None,ax=None,x_lab='',y_lab='',fontsi
 		fig.set_size_inches(figsize[0],figsize[1])
 	else:
 		raise RuntimeError('What plot are you trying to do.')
-	for tick in ax.xaxis.get_major_ticks():
-		tick.label.set_fontsize(ticklabelsize)
-	for tick in ax.yaxis.get_major_ticks():
-		tick.label.set_fontsize(ticklabelsize)
+	#for tick in ax.xaxis.get_major_ticks():
+	#	tick.label.set_fontsize(ticklabelsize)
+	#for tick in ax.yaxis.get_major_ticks():
+	#	tick.label.set_fontsize(ticklabelsize)
 	ax.set_xlabel(x_lab,fontsize=fontsize)
 	ax.set_ylabel(y_lab,fontsize=fontsize)
+	ax.tick_params(labelsize=ticklabelsize,size=7,width=3,direction='inout')
 	return(ax)
 
 
